@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="pageTitle">شركة العقلاني - برنامج أجر Ajr</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma}
+body{background:#E9ECF1;padding:18px}
+.header{background:#131A2E;border-radius:16px 16px 0 0;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;color:#fff;flex-wrap:wrap;gap:10px}
+.header h1{font-size:42px;font-weight:900;cursor:pointer}.header h1 span{color:#14A99A}
+.logoBox{display:flex;align-items:center;gap:10px}
+.logoFixed{display:flex;align-items:center;gap:8px;cursor:pointer}
+.logoFixed img,.logoFixed svg{width:56px;height:56px;border-radius:50%;background:#fff;padding:2px;border:3px solid #14A99A;object-fit:cover}
+.search{background:#D9D9E3;border:none;padding:11px 18px;border-radius:22px;width:300px;text-align:right}
+.user{display:flex;align-items:center;gap:10px}
+.userProfile{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:10px;cursor:pointer}
+.userProfile img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+.iconBtn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative}
+.iconBtn .dot{position:absolute;top:4px;left:6px;width:9px;height:9px;background:#EF4444;border-radius:50%;border:2px solid #131A2E}
+.main{background:#F3F4F6;padding:22px;border-radius:0 0 16px 16px}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.top h2{font-size:32px;cursor:pointer}.btn{background:#14A99A;color:#fff;border:none;padding:13px 20px;border-radius:10px;font-weight:800;cursor:pointer}
+.btnWa{background:#16A34A;color:#fff;border:none;padding:13px 20px;border-radius:10px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btnTrial{background:#F59E0B;color:#fff;border:none;padding:13px 20px;border-radius:10px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+.card{background:#fff;border-radius:14px;padding:20px;position:relative;min-height:160px;cursor:pointer}
+.card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:10px;background:#14A99A}
+.icon{position:absolute;left:14px;top:12px;background:#14A99A;color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+.card small{font-weight:800}.card h3{font-size:32px;margin:12px 0 8px}.card p{color:#0F766E;font-size:13px;font-weight:700}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+.box{background:#fff;border-radius:14px;padding:18px}
+table{width:100%;border-collapse:collapse;margin-top:12px}th{padding:10px;background:#F8FAFC}td{padding:13px 8px;border-bottom:1px solid #F3F4F6;font-weight:600;font-size:14px}
+.emp{display:flex;align-items:center;gap:8px}.emp img{width:34px;height:34px;border-radius:50%;object-fit:cover}
+.bars{display:flex;align-items:flex-end;gap:12px;height:230px;margin-top:16px}
+.bar{flex:1;background:#14A99A;border-radius:4px 4px 0 0;display:flex;align-items:flex-start;justify-content:center;color:#fff;font-size:11px;padding-top:6px;min-height:40px}
+.labels{display:flex;gap:12px;margin-top:8px}.labels span{flex:1;text-align:center;font-size:12px}
+.companyBar{text-align:center;background:#131A2E;color:#fff;padding:10px;border-radius:10px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer}
+.demoBadge{background:#F59E0B;color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:800}
+.ownerBadge{background:#EF4444;color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:800;display:none}
+.floatWa{position:fixed;bottom:20px;left:20px;z-index:999;background:#16A34A;color:#fff;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.3);border:3px solid #fff}
+.floatWa span{position:absolute;top:-8px;left:-8px;background:#EF4444;color:#fff;font-size:11px;padding:3px 8px;border-radius:20px;font-weight:800}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center}.modal.show{display:flex}
+.modalBox{background:#fff;width:560px;max-width:94%;border-radius:16px;padding:22px;max-height:92vh;overflow:auto}
+.modalBox h3{text-align:center}.modalBox label{font-size:13px;font-weight:700;display:block;margin-top:10px}.modalBox input{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:4px}
+.profilePic{width:100px;height:100px;border-radius:50%;object-fit:cover;border:4px solid #14A99A;display:block;margin:10px auto;cursor:pointer}
+.uploadBtn{background:#F3F4F6;border:2px dashed #14A99A;padding:12px;border-radius:10px;text-align:center;cursor:pointer;font-weight:700;color:#0F766E}
+@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.search{width:180px}}
+</style></head>
+<body>
+<div class="header">
+<div class="user"><div class="userProfile" onclick="tryEdit()"><img id="ownerAvatar" src="https://i.pravatar.cc/100?img=47"><div><b id="ownerName">أهلاً بيك في أجر</b><br><small id="ownerSub">دوس هنا لو انت صاحب الموقع 🔒</small></div></div>
+<button class="iconBtn" onclick="alert('🔔 الإشعارات: موعد الرواتب قرب')">🔔<span class="dot"></span></button>
+<button class="iconBtn" onclick="ownerLogin()" title="دخول صاحب الموقع">🔒</button></div>
+<input class="search" placeholder="بحث | Search 🔍">
+<div class="logoBox"><h1 onclick="tryEdit()"><span id="brandAr">أجر</span> <span id="brandEn">Ajr</span></h1>
+<div class="logoFixed" onclick="tryEdit()"><span id="brandLogoHolder"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#fff"/><circle cx="50" cy="50" r="42" fill="none" stroke="#14A99A" stroke-width="3"/><circle cx="50" cy="54" r="30" fill="#131A2E"/><text x="50" y="28" text-anchor="middle" font-size="11" font-weight="900" fill="#14A99A">العقلاني</text><rect x="32" y="40" width="22" height="28" rx="3" fill="none" stroke="#14A99A" stroke-width="3"/><circle cx="62" cy="62" r="9" fill="#14A99A"/><text x="62" y="66" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">$</text></svg></span><div><b style="font-size:13px" id="companyNameTop">العقلاني</b><br><small style="color:#94A3B8;font-size:10px" id="companySubTop">Al-Aqelany • Ajr</small></div></div>
+</div></div>
+<div class="main">
+<div class="companyBar" onclick="tryEdit()"><b id="companyBarText">شركة العقلاني - Al-Aqelany Company</b> <span class="demoBadge" id="demoBadge">نسخة تجريبية - للعرض فقط</span> <span class="ownerBadge" id="ownerBadge">🔓 وضع صاحب الموقع - دوس على أي حاجة عشان تعدلها</span></div>
+<div class="top"><div><h2 onclick="tryEdit()" id="dashTitle">لوحة التحكم | Dashboard</h2><p id="dashSub">شركة العقلاني - لشهر أكتوبر 2024 - جرب البرنامج قبل الشراء</p></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<a class="btnTrial" href="trial.html">🎁 جرب مجاناً لمدة 7 أيام</a>
+<a class="btnWa" id="waTop" href="https://wa.me/201000000000?text=أهلاً شركة العقلاني - عايز اشتري برنامج أجر Ajr" target="_blank">💬 <span id="waTopText">واتساب شركة العقلاني</span></a>
+<button class="btn" onclick="alert('🧮 حساب الرواتب: متاح في النسخة الكاملة')">🧮 حساب الرواتب</button>
+</div></div>
+<div class="cards">
+<div class="card" onclick="tryEdit()"><div class="icon">👥</div><small>إجمالي الموظفين</small><h3>3</h3><p>+3 هذا الشهر</p></div>
+<div class="card" onclick="tryEdit()"><div class="icon">📅</div><small>إجمالي الغياب</small><h3>12 يوم</h3><p>-3 أيام من الشهر الماضي</p></div>
+<div class="card" onclick="tryEdit()"><div class="icon">💲</div><small>إجمالي الرواتب هذا الشهر</small><h3>24,114.58 EGP</h3><p>+12.5% عن الشهر الماضي</p></div>
+<div class="card" onclick="tryEdit()"><div class="icon">⏰</div><small>إجمالي العمل الإضافي</small><h3>1,114.58</h3><p>+45 ساعة</p></div>
+</div>
+<div class="grid"><div class="box"><h3 id="tableTitle">جدول الرواتب | Salary Table - شركة العقلاني</h3>
+<table><tr><th>الموظف</th><th>الفرع</th><th>الأساسي</th><th>الصافي</th></tr>
+<tr><td><div class="emp"><img src="https://i.pravatar.cc/100?img=12">أحمد - عامل</div></td><td>فرع القاهرة</td><td>15,000 EGP</td><td><b>15,114.58 EGP</b></td></tr>
+<tr><td><div class="emp"><img src="https://i.pravatar.cc/100?img=32">سارة - محاسبة</div></td><td>فرع القاهرة</td><td>2,000 EGP</td><td><b>2,000 EGP</b></td></tr>
+<tr><td><div class="emp"><img src="https://i.pravatar.cc/100?img=45">منال - عامل</div></td><td>فرع القاهرة</td><td>6,000 EGP</td><td><b>7,000 EGP</b></td></tr></table>
+<div style="margin-top:14px;background:#DCFCE7;padding:14px;border-radius:10px;text-align:center"><b id="buyText">عجبك البرنامج؟ كلم شركة العقلاني على الواتساب واشتري نسختك</b><br><br><a class="btnWa" id="waMid" href="https://wa.me/201000000000?text=أهلاً شركة العقلاني - عايز اشتري برنامج أجر Ajr" target="_blank" style="font-size:16px;padding:14px 26px">💬 <span id="waMidText">كلم شركة العقلاني على الواتساب - اشتري دلوقتي</span></a></div>
+</div><div class="box"><h3>الرواتب حسب الشهر</h3><div class="bars"><div class="bar" style="height:100%">900k</div><div class="bar" style="height:61%">550k</div><div class="bar" style="height:66%">600k</div><div class="bar" style="height:77%">700k</div><div class="bar" style="height:88%">800k</div><div class="bar" style="height:94%">850k</div></div><div class="labels"><span>يونيو</span><span>مايو</span><span>أبريل</span><span>مارس</span><span>فبراير</span><span>يناير</span></div></div></div>
+<p style="text-align:center;margin-top:14px;color:#888"><span id="footerText">شركة العقلاني - Al-Aqelany Company • برنامج أجر Ajr • جميع الحقوق محفوظة © 2026</span> • <a id="waFoot" href="https://wa.me/201000000000" target="_blank" style="color:#16A34A;font-weight:800">واتساب الشركة 💬</a></p>
+</div>
+<a class="floatWa" id="waFloat" href="https://wa.me/201000000000?text=أهلاً شركة العقلاني - عايز اشتري برنامج أجر Ajr" target="_blank">💬<span>اشتري</span></a>
+
+<div class="modal" id="ownerModal"><div class="modalBox"><h3>🔓 لوحة تحكم صاحب الموقع - غير أي حاجة</h3>
+<p style="text-align:center;color:#666;font-size:13px">انت بس اللي شايف دي - العميل مش هيشوفها</p>
+<label>🖼️ لوجو العقلاني - دوس واختار صورة لوجو جديدة</label>
+<img id="brandLogoPreview" class="profilePic" src="" style="display:none">
+<div class="uploadBtn" onclick="document.getElementById('brandLogoInput').click()">🖼️ تغيير لوجو العقلاني</div>
+<input type="file" id="brandLogoInput" accept="image/*" style="display:none" onchange="changeBrandLogo(this)">
+<div style="text-align:center;margin-top:6px"><button onclick="resetBrandLogo()" style="background:none;border:none;color:#DC2626;cursor:pointer;font-size:12px">↩️ رجع اللوجو القديم</button></div>
+<label>اسم البرنامج بالعربي - مثال: أجر</label><input id="oBrandAr" placeholder="أجر">
+<label>اسم البرنامج بالإنجليزي - مثال: Ajr</label><input id="oBrandEn" placeholder="Ajr">
+<label>اسم الشركة - مثال: العقلاني</label><input id="oCompany" placeholder="العقلاني">
+<label>اسم الشركة بالإنجليزي - مثال: Al-Aqelany</label><input id="oCompanyEn" placeholder="Al-Aqelany">
+<label>اسمك اللي يظهر فوق</label><input id="oName" placeholder="أهلاً بيك في أجر">
+<label>الجملة اللي تحت اسمك</label><input id="oSub" placeholder="شركة العقلاني ترحب بيك">
+<label>عنوان لوحة التحكم</label><input id="oDashTitle" placeholder="لوحة التحكم | Dashboard">
+<label>الجملة اللي تحت لوحة التحكم</label><input id="oDashSub" placeholder="شركة العقلاني - لشهر أكتوبر 2024">
+<label>شريط الشركة - السطر اللي في النص</label><input id="oBar" placeholder="شركة العقلاني - Al-Aqelany Company">
+<label>كلمة نسخة تجريبية - لو عايز تشيلها امسحها</label><input id="oBadge" placeholder="نسخة تجريبية - للعرض فقط">
+<label>نص زر الواتساب اللي فوق</label><input id="oWaTop" placeholder="واتساب شركة العقلاني">
+<label>نص الدعوة للشراء في النص</label><input id="oBuy" placeholder="عجبك البرنامج؟ كلم شركة العقلاني...">
+<label>نص زر الشراء في النص</label><input id="oWaMid" placeholder="كلم شركة العقلاني على الواتساب - اشتري دلوقتي">
+<label>نص الفوتر اللي تحت خالص</label><input id="oFooter" placeholder="شركة العقلاني - Al-Aqelany Company...">
+<label>📷 صورتك</label>
+<img id="ownerPreview" class="profilePic" src="https://i.pravatar.cc/200?img=47" onclick="document.getElementById('ownerAvatarInput').click()">
+<div class="uploadBtn" onclick="document.getElementById('ownerAvatarInput').click()">📷 تغيير صورتك</div>
+<input type="file" id="ownerAvatarInput" accept="image/*" style="display:none" onchange="changeOwnerAvatar(this)">
+<label>💬 رقم واتساب الشركة - من غير + - مثال: 201012345678</label><input id="oWa" placeholder="201000000000">
+<label>🔑 كلمة السر الجديدة - سيبها فاضية لو مش عايز تغيرها</label><input id="oPass" placeholder="سيبها فاضية">
+<div style="display:flex;gap:8px;margin-top:14px"><button onclick="saveOwner()" style="flex:2;background:#14A99A;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:800;cursor:pointer">💾 حفظ كل التعديلات</button><button onclick="closeOwner()" style="flex:1;background:#eee;border:none;padding:14px;border-radius:10px;cursor:pointer">إلغاء</button></div>
+<button onclick="logoutOwner()" style="width:100%;margin-top:8px;background:#FEE2E2;color:#DC2626;border:none;padding:10px;border-radius:10px;cursor:pointer;font-weight:700">🔒 قفل وضع صاحب الموقع</button>
+</div></div>
+
+<script>
+let DEFAULT_LOGO = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#fff"/><circle cx="50" cy="50" r="42" fill="none" stroke="#14A99A" stroke-width="3"/><circle cx="50" cy="54" r="30" fill="#131A2E"/><text x="50" y="28" text-anchor="middle" font-size="11" font-weight="900" fill="#14A99A">العقلاني</text><rect x="32" y="40" width="22" height="28" rx="3" fill="none" stroke="#14A99A" stroke-width="3"/><circle cx="62" cy="62" r="9" fill="#14A99A"/><text x="62" y="66" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">$</text></svg>`;
+let owner = {brandAr:'أجر', brandEn:'Ajr', company:'العقلاني', companyEn:'Al-Aqelany', name:'أهلاً بيك في أجر', sub:'دوس هنا لو انت صاحب الموقع 🔒', dashTitle:'لوحة التحكم | Dashboard', dashSub:'شركة العقلاني - لشهر أكتوبر 2024 - جرب البرنامج قبل الشراء', bar:'شركة العقلاني - Al-Aqelany Company', badge:'نسخة تجريبية - للعرض فقط', waTop:'واتساب شركة العقلاني', buy:'عجبك البرنامج؟ كلم شركة العقلاني على الواتساب واشتري نسختك', waMid:'كلم شركة العقلاني على الواتساب - اشتري دلوقتي', footer:'شركة العقلاني - Al-Aqelany Company • برنامج أجر Ajr • جميع الحقوق محفوظة © 2026', avatar:'https://i.pravatar.cc/100?img=47', wa:'201000000000', pass:'1234', brandLogo:''};
+let isOwner=false;
+try{let s=localStorage.getItem('aqelany_owner_full'); if(s){let d=JSON.parse(s); owner={...owner, ...(d.owner||{})};}}catch(e){}
+function applyOwner(){
+  document.getElementById('pageTitle').innerText = 'شركة '+owner.company+' - برنامج '+owner.brandAr+' '+owner.brandEn;
+  document.getElementById('brandAr').innerText=owner.brandAr;
+  document.getElementById('brandEn').innerText=owner.brandEn;
+  document.getElementById('companyNameTop').innerText=owner.company;
+  document.getElementById('companySubTop').innerText=owner.companyEn+' • '+owner.brandEn;
+  document.getElementById('ownerAvatar').src=owner.avatar;
+  document.getElementById('ownerPreview').src=owner.avatar;
+  document.getElementById('ownerName').innerText=owner.name;
+  document.getElementById('ownerSub').innerText=isOwner ? 'وضع صاحب الموقع مفتوح 🔓 - دوس على أي حاجة عشان تعدلها' : owner.sub;
+  document.getElementById('dashTitle').innerText=owner.dashTitle;
+  document.getElementById('dashSub').innerText=owner.dashSub;
+  document.getElementById('companyBarText').innerText=owner.bar;
+  document.getElementById('demoBadge').innerText=owner.badge;
+  document.getElementById('demoBadge').style.display = owner.badge.trim()==='' ? 'none' : 'inline-block';
+  document.getElementById('waTopText').innerText=owner.waTop;
+  document.getElementById('buyText').innerText=owner.buy;
+  document.getElementById('waMidText').innerText=owner.waMid;
+  document.getElementById('footerText').innerText=owner.footer;
+  document.getElementById('tableTitle').innerText='جدول الرواتب | Salary Table - شركة '+owner.company;
+  if(owner.brandLogo){
+    document.getElementById('brandLogoHolder').innerHTML=`<img src="${owner.brandLogo}">`;
+    document.getElementById('brandLogoPreview').src=owner.brandLogo;
+    document.getElementById('brandLogoPreview').style.display='block';
+  } else {
+    document.getElementById('brandLogoHolder').innerHTML=DEFAULT_LOGO;
+    document.getElementById('brandLogoPreview').style.display='none';
+  }
+  let link='https://wa.me/'+owner.wa+'?text=أهلاً شركة '+owner.company+' - عايز اشتري برنامج '+owner.brandAr+' '+owner.brandEn;
+  ['waTop','waMid','waFloat'].forEach(id=>{let el=document.getElementById(id); if(el) el.href=link;});
+  let wf=document.getElementById('waFoot'); if(wf) wf.href='https://wa.me/'+owner.wa;
+  document.getElementById('ownerBadge').style.display = isOwner ? 'inline-block' : 'none';
+}
+function ownerLogin(){
+  if(isOwner){ openOwner(); return; }
+  let p=prompt('🔒 ده مكان صاحب الموقع بس - اكتب كلمة السر:\nلو نسيتها اكتب: نسيت');
+  if(p===null) return;
+  if(p===owner.pass){ isOwner=true; alert('أهلاً بيك يا محمود ✅ - دوس على أي حاجة عشان تعدلها'); applyOwner(); openOwner(); return; }
+  if(p==='نسيت' || p==='نسيتها'){
+    let s=prompt('اكتب الكلمة الاحتياطية - اسم شركتك:');
+    if(s && s.trim()==='العقلاني'){
+      let np=prompt('تمام ✅ - اكتب كلمة السر الجديدة اللي مش هتنساها:');
+      if(np && np.trim()!==''){ owner.pass=np.trim(); localStorage.setItem('aqelany_owner_full', JSON.stringify({owner})); isOwner=true; alert('تم ✅ - كلمة السر الجديدة بقت: '+np); applyOwner(); openOwner(); }
+    } else { alert('❌ الكلمة الاحتياطية غلط - اكتب: العقلاني'); }
+    return;
+  }
+  alert('❌ كلمة السر غلط - لو نسيتها اكتب: نسيت');
+}
+function tryEdit(){ if(!isOwner){ ownerLogin(); return; } openOwner(); }
+function openOwner(){
+  document.getElementById('oBrandAr').value=owner.brandAr;
+  document.getElementById('oBrandEn').value=owner.brandEn;
+  document.getElementById('oCompany').value=owner.company;
+  document.getElementById('oCompanyEn').value=owner.companyEn;
+  document.getElementById('oName').value=owner.name;
+  document.getElementById('oSub').value=owner.sub;
+  document.getElementById('oDashTitle').value=owner.dashTitle;
+  document.getElementById('oDashSub').value=owner.dashSub;
+  document.getElementById('oBar').value=owner.bar;
+  document.getElementById('oBadge').value=owner.badge;
+  document.getElementById('oWaTop').value=owner.waTop;
+  document.getElementById('oBuy').value=owner.buy;
+  document.getElementById('oWaMid').value=owner.waMid;
+  document.getElementById('oFooter').value=owner.footer;
+  document.getElementById('oWa').value=owner.wa;
+  document.getElementById('oPass').value='';
+  document.getElementById('ownerPreview').src=owner.avatar;
+  if(owner.brandLogo){ document.getElementById('brandLogoPreview').src=owner.brandLogo; document.getElementById('brandLogoPreview').style.display='block'; }
+  document.getElementById('ownerModal').classList.add('show');
+}
+function closeOwner(){ document.getElementById('ownerModal').classList.remove('show'); }
+function logoutOwner(){ isOwner=false; closeOwner(); applyOwner(); alert('تم قفل وضع صاحب الموقع 🔒'); }
+function readFile(input,cb){let f=input.files[0]; if(!f) return; let r=new FileReader(); r.onload=e=>cb(e.target.result); r.readAsDataURL(f);}
+function changeOwnerAvatar(input){ readFile(input,url=>{ document.getElementById('ownerPreview').src=url; owner.avatar=url; }); }
+function changeBrandLogo(input){ readFile(input,url=>{ owner.brandLogo=url; document.getElementById('brandLogoPreview').src=url; document.getElementById('brandLogoPreview').style.display='block'; document.getElementById('brandLogoHolder').innerHTML=`<img src="${url}">`; }); }
+function resetBrandLogo(){ owner.brandLogo=''; document.getElementById('brandLogoHolder').innerHTML=DEFAULT_LOGO; document.getElementById('brandLogoPreview').style.display='none'; }
+function saveOwner(){
+  owner.brandAr=document.getElementById('oBrandAr').value||owner.brandAr;
+  owner.brandEn=document.getElementById('oBrandEn').value||owner.brandEn;
+  owner.company=document.getElementById('oCompany').value||owner.company;
+  owner.companyEn=document.getElementById('oCompanyEn').value||owner.companyEn;
+  owner.name=document.getElementById('oName').value||owner.name;
+  owner.sub=document.getElementById('oSub').value||owner.sub;
+  owner.dashTitle=document.getElementById('oDashTitle').value||owner.dashTitle;
+  owner.dashSub=document.getElementById('oDashSub').value||owner.dashSub;
+  owner.bar=document.getElementById('oBar').value||owner.bar;
+  owner.badge=document.getElementById('oBadge').value;
+  owner.waTop=document.getElementById('oWaTop').value||owner.waTop;
+  owner.buy=document.getElementById('oBuy').value||owner.buy;
+  owner.waMid=document.getElementById('oWaMid').value||owner.waMid;
+  owner.footer=document.getElementById('oFooter').value||owner.footer;
+  let wa=document.getElementById('oWa').value.replace(/\D/g,''); if(wa) owner.wa=wa;
+  let np=document.getElementById('oPass').value.trim(); if(np) owner.pass=np;
+  owner.avatar=document.getElementById('ownerPreview').src;
+  localStorage.setItem('aqelany_owner_full', JSON.stringify({owner}));
+  applyOwner(); closeOwner(); alert('تم حفظ كل التعديلات ✅');
+}
+applyOwner();
+</script>
+</body></html>
